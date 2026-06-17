@@ -15,7 +15,7 @@
  *  Installed automatically by the "Synology SRM Integration" parent app — do not create manually.
  *
  *  Author:  Derek Osborn
- *  Version: 1.0.0  (Initial release — 2026-06-17)
+ *  Version: 1.1.0  (2026-06-17)
  */
 
 metadata {

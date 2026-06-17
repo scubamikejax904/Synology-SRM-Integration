@@ -11,7 +11,7 @@
  *  "Allow Reboot" is enabled in the app settings, and it reboots the whole router — use with care.
  *
  *  Author:  Derek Osborn
- *  Version: 1.0.0  (Initial release — 2026-06-17)
+ *  Version: 1.1.0  (2026-06-17)
  */
 
 metadata {
