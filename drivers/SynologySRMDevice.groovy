@@ -19,7 +19,8 @@
  */
 
 metadata {
-    definition(name: "Synology SRM Device", namespace: "derekosborn", author: "Derek Osborn") {
+    definition(name: "Synology SRM Device", namespace: "derekosborn", author: "Derek Osborn",
+               importUrl: "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMDevice.groovy") {
         capability "PresenceSensor"
         capability "Switch"
         capability "Refresh"

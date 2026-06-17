@@ -1,5 +1,5 @@
 /**
- *  Synology SRM Integration  (parent app)
+ *  Synology SRM Router Integration  (parent app)
  *
  *  Tracks WiFi/network devices on a Synology SRM router (RT6600AX / RT2600AC, SRM 1.3) and
  *  represents each selected device as a Hubitat child device exposing PresenceSensor + Switch.
@@ -29,12 +29,13 @@ import groovy.transform.Field
 @Field static final String ROUTER_DNI  = "SRM-ROUTER"
 
 definition(
-    name: "Synology SRM Integration",
+    name: "Synology SRM Router Integration",
     namespace: "derekosborn",
     author: "Derek Osborn",
     description: "Track WiFi/network devices from a Synology SRM Router as presence + switch devices.",
     category: "Convenience",
     iconUrl: "", iconX2Url: "", iconX3Url: "",
+    importUrl: "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/app/SynologySRMIntegration.groovy",
     menu: "Integrations", // Valid values are “Integrations”, “Automations”, and “Apps”
 )
 
@@ -46,7 +47,7 @@ preferences {
 /* ---------------- UI ---------------- */
 
 def mainPage() {
-    dynamicPage(name: "mainPage", title: "Synology SRM Integration", install: true, uninstall: true) {
+    dynamicPage(name: "mainPage", title: "Synology SRM Router Integration", install: true, uninstall: true) {
         section("Router connection") {
             input "host",     "text",     title: "Router IP / host", required: true
             input "port",     "number",   title: "Port",             defaultValue: 8001, required: true
