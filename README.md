@@ -4,6 +4,8 @@ Track devices on your Synology router's WiFi/network as Hubitat presence + switc
 
 Built and tested against an **RT6600ax + RT2600ac mesh running SRM 1.3.2**. Communicates with the router's local SYNO Web API over HTTPS.
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
 > **Version 1.0.0** — initial release.
 
 <!-- Add screenshots here, e.g.:
@@ -47,15 +49,15 @@ Install the **drivers first**, then the app.
 
 | Driver | File |
 |---|---|
-| Synology SRM Device | [`drivers/SynologySRMDevice.groovy`](PLACEHOLDER_REPO_URL/blob/main/drivers/SynologySRMDevice.groovy) |
-| Synology SRM Router | [`drivers/SynologySRMRouter.groovy`](PLACEHOLDER_REPO_URL/blob/main/drivers/SynologySRMRouter.groovy) |
-| Synology SRM Node | [`drivers/SynologySRMNode.groovy`](PLACEHOLDER_REPO_URL/blob/main/drivers/SynologySRMNode.groovy) |
+| Synology SRM Device | [`drivers/SynologySRMDevice.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/drivers/SynologySRMDevice.groovy) |
+| Synology SRM Router | [`drivers/SynologySRMRouter.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/drivers/SynologySRMRouter.groovy) |
+| Synology SRM Node | [`drivers/SynologySRMNode.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/drivers/SynologySRMNode.groovy) |
 
 ### 2. App (Apps Code → New App → paste → Save)
 
 | App | File |
 |---|---|
-| Synology SRM Integration | [`app/SynologySRMIntegration.groovy`](PLACEHOLDER_REPO_URL/blob/main/app/SynologySRMIntegration.groovy) |
+| Synology SRM Integration | [`app/SynologySRMIntegration.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/app/SynologySRMIntegration.groovy) |
 
 ### 3. Configure
 
@@ -150,4 +152,4 @@ Commands: `reboot` *(requires "Allow Reboot")*.
 
 Created by Derek Osborn. Protocol approach informed by the [aerialls/synology-srm](https://github.com/aerialls/synology-srm) Python client.
 
-License: `PLACEHOLDER` (e.g. MIT).
+License: [GNU General Public License v3.0](LICENSE).
