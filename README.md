@@ -6,7 +6,7 @@ Built and tested against an **RT6600ax + RT2600ac mesh running SRM 1.3.2**. Comm
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-> **Version 1.0.0** — initial release.
+> **Version 1.1.0**
 
 <!-- Add screenshots here, e.g.:
 ![Device list](docs/devices.png)
@@ -43,21 +43,21 @@ Built and tested against an **RT6600ax + RT2600ac mesh running SRM 1.3.2**. Comm
 
 ## Installation
 
-Install the **drivers first**, then the app.
+Install the **drivers first**, then the app. The links below are **raw** URLs — in Hubitat you can click **Import**, paste the URL, and Save (no manual copy/paste needed).
 
-### 1. Drivers (Drivers Code → New Driver → paste → Save)
+### 1. Drivers (Drivers Code → New Driver → Import → paste URL → Save)
 
 | Driver | File |
 |---|---|
-| Synology SRM Device | [`drivers/SynologySRMDevice.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/drivers/SynologySRMDevice.groovy) |
-| Synology SRM Router | [`drivers/SynologySRMRouter.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/drivers/SynologySRMRouter.groovy) |
-| Synology SRM Node | [`drivers/SynologySRMNode.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/drivers/SynologySRMNode.groovy) |
+| Synology SRM Device | [`drivers/SynologySRMDevice.groovy`](https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMDevice.groovy) |
+| Synology SRM Router | [`drivers/SynologySRMRouter.groovy`](https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMRouter.groovy) |
+| Synology SRM Node | [`drivers/SynologySRMNode.groovy`](https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMNode.groovy) |
 
-### 2. App (Apps Code → New App → paste → Save)
+### 2. App (Apps Code → New App → Import → paste URL → Save)
 
 | App | File |
 |---|---|
-| Synology SRM Integration | [`app/SynologySRMIntegration.groovy`](https://github.com/dJOS1475/Synology-SRM-Integration/blob/main/app/SynologySRMIntegration.groovy) |
+| Synology SRM Integration | [`app/SynologySRMIntegration.groovy`](https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/app/SynologySRMIntegration.groovy) |
 
 ### 3. Configure
 
@@ -143,6 +143,8 @@ Commands: `reboot` *(requires "Allow Reboot")*.
 ---
 
 ## Changelog
+
+**v1.1.0** — Added HTML dashboard tiles (`htmlTile`) to every device; added `importUrl` to all components for one-click import/updates in Hubitat.
 
 **v1.0.0** — Initial release: device presence tracking, router & mesh-node health, internet/WAN status, firmware-update indicator, whole-router & per-node reboot, Safe Access internet pause, screen-time reporting.
 
