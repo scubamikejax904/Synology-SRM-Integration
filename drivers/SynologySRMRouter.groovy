@@ -123,7 +123,7 @@ private updateAttr(String name, value) {
 private void updateTile() {
     boolean reachable = device.currentValue("presence") == "present"
     StringBuilder h = new StringBuilder()
-    h << "<div style='line-height:1.3; font-size:0.85em; text-align:left;'>"
+    h << "<div style='line-height:1.7; font-size:0.85em; text-align:left;'>"
     h << "<b>${device.currentValue('model') ?: 'SRM Router'}</b><br>"
     if (!reachable) {
         h << "🔴 unreachable</div>"

@@ -84,7 +84,7 @@ private updateAttr(String name, value) {
 private void updateTile() {
     boolean online = device.currentValue("presence") == "present"
     StringBuilder h = new StringBuilder()
-    h << "<div style='line-height:1.3; font-size:0.85em; text-align:left;'>"
+    h << "<div style='line-height:1.7; font-size:0.85em; text-align:left;'>"
     h << "<b>${device.displayName}</b><br>"
     h << (online ? "🟢 online" : "🔴 offline")
     def ct = device.currentValue("connectionType"); if (ct) h << " • ${ct}"
@@ -92,7 +92,9 @@ private void updateTile() {
     if (online) {
         h << "CPU ${device.currentValue('cpu')}% • Mem ${device.currentValue('memory')}%<br>"
         def cd = device.currentValue("connectedDevices"); def pu = device.currentValue("portsUp")
-        h << "${cd != null ? cd : '?'} devices${pu != null ? ' • ' + pu + ' ports up' : ''}<br>"
+        if (cd != null) h << "${cd} device${cd == 1 ? '' : 's'}"
+        if (pu != null) h << "${cd != null ? ' • ' : ''}${pu} port${pu == 1 ? '' : 's'} up"
+        h << "<br>"
         def up = device.currentValue("uptime"); if (up) h << "Uptime ${up}"
     }
     h << "</div>"

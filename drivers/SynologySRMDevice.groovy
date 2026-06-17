@@ -147,7 +147,7 @@ private updateAttr(String name, value) {
 private void updateTile() {
     boolean online = device.currentValue("presence") == "present"
     StringBuilder h = new StringBuilder()
-    h << "<div style='line-height:1.3; font-size:0.85em; text-align:left;'>"
+    h << "<div style='line-height:1.7; font-size:0.85em; text-align:left;'>"
     h << "<b>${device.displayName}</b><br>"
     h << (online ? "🟢 online" : "🔴 offline")
     def ip = device.currentValue("ipAddress"); if (ip) h << " &nbsp;${ip}"
