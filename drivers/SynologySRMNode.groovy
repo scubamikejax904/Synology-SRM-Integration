@@ -28,6 +28,7 @@ metadata {
         attribute "connectionType",   "string"   // wired | wireless
         attribute "portsUp",          "number"   // ethernet ports with link
         attribute "lastUpdate",       "string"
+        attribute "htmlTile",         "string"   // dashboard summary tile
 
         command "reboot"
     }
@@ -61,6 +62,7 @@ def setNode(Map n) {
     updateAttr("connectionType",   n.connectionType)
     updateAttr("portsUp",          n.portsUp)
     updateAttr("lastUpdate", new Date().format("yyyy-MM-dd HH:mm:ss"))
+    updateTile()
 }
 
 def setOffline() {
@@ -68,10 +70,36 @@ def setOffline() {
         sendEvent(name: "presence", value: "not present", descriptionText: "${device.displayName} is not present")
         if (txtEnable) log.info "${device.displayName} is not present"
     }
+    updateTile()
 }
 
 private updateAttr(String name, value) {
     if (value != null && device.currentValue(name)?.toString() != value.toString()) {
         sendEvent(name: name, value: value)
     }
+}
+
+/* ---- dashboard HTML tile ---- */
+
+private void updateTile() {
+    boolean online = device.currentValue("presence") == "present"
+    StringBuilder h = new StringBuilder()
+    h << "<div style='line-height:1.3; font-size:0.85em; text-align:left;'>"
+    h << "<b>${device.displayName}</b><br>"
+    h << (online ? "🟢 online" : "🔴 offline")
+    def ct = device.currentValue("connectionType"); if (ct) h << " • ${ct}"
+    h << "<br>"
+    if (online) {
+        h << "CPU ${device.currentValue('cpu')}% • Mem ${device.currentValue('memory')}%<br>"
+        def cd = device.currentValue("connectedDevices"); def pu = device.currentValue("portsUp")
+        h << "${cd != null ? cd : '?'} devices${pu != null ? ' • ' + pu + ' ports up' : ''}<br>"
+        def up = device.currentValue("uptime"); if (up) h << "Uptime ${up}"
+    }
+    h << "</div>"
+    updateTileAttr("htmlTile", h.toString())
+}
+
+private void updateTileAttr(String name, String val) {
+    if (val.length() > 1024) log.warn "${name} is ${val.length()} chars (>1024) — dashboard tile may be truncated"
+    if (device.currentValue(name) != val) sendEvent(name: name, value: val)
 }

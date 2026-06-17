@@ -33,6 +33,7 @@ metadata {
         attribute "updateAvailable", "enum", ["yes", "no", "unknown"]    // firmware update pending
         attribute "availableVersion","string"                            // e.g. "SRM 1.3.2-9366 Update 2"
         attribute "lastPoll",        "string"
+        attribute "htmlTile",        "string"   // dashboard summary tile
 
         command "reboot"
     }
@@ -92,6 +93,7 @@ def updateHealth(Map h) {
         String id = c.deviceNetworkId.replace("SRMNODE-", "")
         if (!seenIds.contains(id)) c.setOffline()
     }
+    updateTile()
 }
 
 def markUnreachable() {
@@ -99,6 +101,7 @@ def markUnreachable() {
         sendEvent(name: "presence", value: "not present", descriptionText: "${device.displayName} is unreachable")
     }
     getChildDevices().each { it.setOffline() }
+    updateTile()
 }
 
 private String nodeDni(nodeId) { "SRMNODE-${nodeId}" }
@@ -113,4 +116,35 @@ private updateAttr(String name, value) {
     if (value != null && device.currentValue(name)?.toString() != value.toString()) {
         sendEvent(name: name, value: value)
     }
+}
+
+/* ---- dashboard HTML tile ---- */
+
+private void updateTile() {
+    boolean reachable = device.currentValue("presence") == "present"
+    StringBuilder h = new StringBuilder()
+    h << "<div style='line-height:1.3; font-size:0.85em; text-align:left;'>"
+    h << "<b>${device.currentValue('model') ?: 'SRM Router'}</b><br>"
+    if (!reachable) {
+        h << "🔴 unreachable</div>"
+        updateTileAttr("htmlTile", h.toString()); return
+    }
+    def net = device.currentValue("internet")
+    h << "Internet: ${net == 'up' ? '🟢 up' : net == 'down' ? '🔴 down' : net}"
+    def ip = device.currentValue("publicIP"); if (ip) h << " &nbsp;${ip}"
+    h << "<br>"
+    h << "CPU ${device.currentValue('cpu')}% • Mem ${device.currentValue('memory')}%<br>"
+    h << "Nodes ${device.currentValue('nodesOnline')}/${device.currentValue('nodeCount')} online<br>"
+    def up = device.currentValue("uptime"); if (up) h << "Uptime ${up}<br>"
+    if (device.currentValue("updateAvailable") == "yes")
+        h << "⚠ Update: ${device.currentValue('availableVersion')}"
+    else
+        h << "<span style='font-size:0.85em;'>${device.currentValue('firmware')}</span>"
+    h << "</div>"
+    updateTileAttr("htmlTile", h.toString())
+}
+
+private void updateTileAttr(String name, String val) {
+    if (val.length() > 1024) log.warn "${name} is ${val.length()} chars (>1024) — dashboard tile may be truncated"
+    if (device.currentValue(name) != val) sendEvent(name: name, value: val)
 }

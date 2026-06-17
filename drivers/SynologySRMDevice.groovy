@@ -40,6 +40,7 @@ metadata {
         attribute "internetAccess",    "enum", ["allowed", "paused", "n/a"]  // Safe Access (Child mode)
         attribute "screenTime",        "string"   // e.g. "1h 23m" online today (Child mode)
         attribute "screenTimeMinutes", "number"   // minutes online today (Child mode)
+        attribute "htmlTile",          "string"   // dashboard summary tile
 
         command "pauseInternet"
         command "resumeInternet"
@@ -88,6 +89,7 @@ def setInternetAccess(paused) {
         sendEvent(name: "internetAccess", value: v)
         if (txtEnable && paused != null) log.info "${device.displayName} internet ${v}"
     }
+    updateTile()
 }
 
 // Called by the app with the selected profile's minutes online today.
@@ -96,6 +98,7 @@ def setScreenTime(mins) {
     int m = mins as int
     updateAttr("screenTimeMinutes", m)
     updateAttr("screenTime", (m >= 60) ? "${(int)(m / 60)}h ${m % 60}m" : "${m}m")
+    updateTile()
 }
 
 /**
@@ -130,10 +133,40 @@ def setOnline(online, d) {
         updateAttr("connection", d.connection ?: (d.is_wireless ? "wifi" : "ethernet"))
     }
     if (isOn) updateAttr("lastSeen", new Date().format("yyyy-MM-dd HH:mm:ss"))
+    updateTile()
 }
 
 private updateAttr(String name, value) {
     if (value != null && device.currentValue(name)?.toString() != value.toString()) {
         sendEvent(name: name, value: value)
     }
+}
+
+/* ---- dashboard HTML tile ---- */
+
+private void updateTile() {
+    boolean online = device.currentValue("presence") == "present"
+    StringBuilder h = new StringBuilder()
+    h << "<div style='line-height:1.3; font-size:0.85em; text-align:left;'>"
+    h << "<b>${device.displayName}</b><br>"
+    h << (online ? "🟢 online" : "🔴 offline")
+    def ip = device.currentValue("ipAddress"); if (ip) h << " &nbsp;${ip}"
+    h << "<br>"
+    def conn = device.currentValue("connection"); def band = device.currentValue("band"); def sig = device.currentValue("signal")
+    if (conn) h << "${conn}${band ? ' ' + band : ''}${(sig != null && sig != 0) ? ' • ' + sig + '%' : ''}<br>"
+    def node = device.currentValue("meshNode"); if (node) h << "via ${node}<br>"
+    def ia = device.currentValue("internetAccess")
+    if (ia && ia != "n/a") {
+        h << "Internet: ${ia == 'paused' ? '⛔ paused' : '✅ allowed'}"
+        def st = device.currentValue("screenTime"); if (st) h << " • ${st} today"
+        h << "<br>"
+    }
+    def ls = device.currentValue("lastSeen"); if (ls) h << "<span style='font-size:0.85em;'>seen ${ls}</span>"
+    h << "</div>"
+    updateTileAttr("htmlTile", h.toString())
+}
+
+private void updateTileAttr(String name, String val) {
+    if (val.length() > 1024) log.warn "${name} is ${val.length()} chars (>1024) — dashboard tile may be truncated"
+    if (device.currentValue(name) != val) sendEvent(name: name, value: val)
 }
