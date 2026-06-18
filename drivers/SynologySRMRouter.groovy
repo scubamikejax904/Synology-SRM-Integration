@@ -15,7 +15,7 @@
  */
 
 metadata {
-    definition(name: "Synology SRM Router", namespace: "derekosborn", author: "Derek Osborn",
+    definition(name: "Synology SRM Router", namespace: "dJOS", author: "Derek Osborn",
         importUrl: "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMRouter.groovy") {
         capability "Refresh"
         capability "PresenceSensor"

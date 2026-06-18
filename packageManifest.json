@@ -1,0 +1,43 @@
+{
+  "packageName": "Synology SRM Router Integration",
+  "author": "Derek Osborn",
+  "version": "1.1.0",
+  "minimumHEVersion": "2.5.0",
+  "dateReleased": "2026-06-17",
+  "releaseNotes": "v1.1.0 -Added HTML dashboard tiles (htmlTile) to every device; added importUrl to all components for one-click import/updates in Hubitat.",
+  "communityLink": "https://community.hubitat.com/t/release-synology-srm-router-integration/164624",
+  "apps": [
+    {
+      "id": "1a8b8e4e-afc8-4203-91fe-70ac1dd27b8a",
+      "name": "Synology SRM Router Integration",
+      "namespace": "dJOS",
+      "location": "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/app/SynologySRMIntegration.groovy",
+      "required": true,
+      "oauth": false,
+      "primary": false
+    }
+  ],
+  "drivers": [
+    {
+      "id": "f6809c0f-ed9f-4095-9ee1-42ddd7a98c22",
+      "name": "Synology SRM Device",
+      "namespace": "dJOS",
+      "location": "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMDevice.groovy",
+      "required": true
+    },
+    {
+      "id": "7bbe8297-ee0f-4af9-92ff-6840f47393c0",
+      "name": "Synology SRM Router",
+      "namespace": "dJOS",
+      "location": "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMRouter.groovy",
+      "required": true
+    },
+    {
+      "id": "5625310b-c7cb-4e06-a81c-74c711b7b84a",
+      "name": "Synology SRM Node",
+      "namespace": "dJOS",
+      "location": "https://raw.githubusercontent.com/dJOS1475/Synology-SRM-Integration/refs/heads/main/drivers/SynologySRMNode.groovy",
+      "required": true
+    }
+  ]
+}

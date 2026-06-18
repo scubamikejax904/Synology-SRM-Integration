@@ -30,7 +30,7 @@ import groovy.transform.Field
 
 definition(
     name: "Synology SRM Router Integration",
-    namespace: "derekosborn",
+    namespace: "dJOS",
     author: "Derek Osborn",
     description: "Track WiFi/network devices from a Synology SRM Router as presence + switch devices.",
     category: "Convenience",
