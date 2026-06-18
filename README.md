@@ -4,7 +4,7 @@ Track devices on your Synology router's WiFi/network as Hubitat presence + switc
 
 Built and tested against an **RT6600ax + RT2600ac mesh running SRM 1.3.2**. Communicates with the router's local SYNO Web API over HTTPS.
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/dJOS1475/Synology-SRM-Integration/tree/main?tab=GPL-3.0-1-ov-file)
 
 > **Version 1.1.0**
 
@@ -154,4 +154,4 @@ Commands: `reboot` *(requires "Allow Reboot")*.
 
 Created by Derek Osborn. Protocol approach informed by the [aerialls/synology-srm](https://github.com/aerialls/synology-srm) Python client.
 
-License: [GNU General Public License v3.0](LICENSE).
+License: [GNU General Public License v3.0](https://github.com/dJOS1475/Synology-SRM-Integration/tree/main?tab=GPL-3.0-1-ov-file).
