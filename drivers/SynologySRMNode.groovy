@@ -7,7 +7,7 @@
  *  Created automatically by the "Synology SRM Router" device — do not create manually.
  *
  *  Author:  Derek Osborn
- *  Version: 1.1.0  (2026-06-17)
+ *  Version: 1.1.1  (2026-06-17)
  */
 
 metadata {

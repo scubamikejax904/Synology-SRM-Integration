@@ -20,8 +20,7 @@
 import groovy.transform.Field
 
 @Field static final String VERSION     = "1.1.1"
-@Field static final String APP_NS      = "dJOS"
-@Field static final String CHILD_NS    = APP_NS
+@Field static final String CHILD_NS    = "dJOS"
 @Field static final String CHILD_TYPE  = "Synology SRM Device"
 @Field static final String NSM_API     = "SYNO.Core.Network.NSM.Device"
 @Field static final Integer NSM_VERSION = 5

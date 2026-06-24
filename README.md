@@ -6,7 +6,7 @@ Built and tested against an **RT6600ax + RT2600ac mesh running SRM 1.3.2**. Comm
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/dJOS1475/Synology-SRM-Integration/tree/main?tab=GPL-3.0-1-ov-file)
 
-> **Version 1.1.0**
+> **Version 1.1.1**
 
 <!-- Add screenshots here, e.g.:
 ![Device list](docs/devices.png)
@@ -143,6 +143,8 @@ Commands: `reboot` *(requires "Allow Reboot")*.
 ---
 
 ## Changelog
+
+**v1.1.1** — Changed namespace to `dJOS`.
 
 **v1.1.0** — Added HTML dashboard tiles (`htmlTile`) to every device; added `importUrl` to all components for one-click import/updates in Hubitat.
 

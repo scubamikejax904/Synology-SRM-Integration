@@ -11,7 +11,7 @@
  *  "Allow Reboot" is enabled in the app settings, and it reboots the whole router — use with care.
  *
  *  Author:  Derek Osborn
- *  Version: 1.1.0  (2026-06-17)
+ *  Version: 1.1.1  (2026-06-17)
  */
 
 metadata {
@@ -80,7 +80,7 @@ def updateHealth(Map h) {
         def child = getChildDevice(dni)
         if (!child) {
             try {
-                child = addChildDevice("derekosborn", "Synology SRM Node", dni,
+                child = addChildDevice("dJOS", "Synology SRM Node", dni,
                         [name: nodeLabel(n), label: nodeLabel(n), isComponent: false])
             } catch (e) {
                 log.error "Could not create node child ${dni}: ${e.message}. Is the 'Synology SRM Node' driver installed?"
