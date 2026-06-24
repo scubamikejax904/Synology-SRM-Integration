@@ -14,7 +14,7 @@
  *  Off/Fixed on tracked phones/tablets so their MAC is stable (randomised MACs are flagged ⚠).
  *
  *  Author:  Derek Osborn
- *  Version: 1.1.1  (2026-06-25)
+ *  v1.1.1  - Fixed the NameSpace errors
  */
 
 import groovy.transform.Field
