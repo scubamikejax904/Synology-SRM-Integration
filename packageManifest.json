@@ -1,10 +1,10 @@
 {
   "packageName": "Synology SRM Router Integration",
   "author": "Derek Osborn",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "minimumHEVersion": "2.5.0",
   "dateReleased": "2026-06-17",
-  "releaseNotes": "v1.1.0 -Added HTML dashboard tiles (htmlTile) to every device; added importUrl to all components for one-click import/updates in Hubitat.",
+  "releaseNotes": "v1.1.1  - Fixed the NameSpace errors.",
   "communityLink": "https://community.hubitat.com/t/release-synology-srm-router-integration/164624",
   "apps": [
     {
